@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard by Negin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 800px;
+            height: 540px;
+            display: flex;
+            justify-content: center;
+            /* border: 2px solid red; */
+            border-radius: 5px;
+            align-items: center;
+            background-color: coral;
+            box-shadow: 2px 2px 10px coral,
+                -2px -2px 10px coral;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            color: rgb(49, 46, 44);
+            text-shadow: 2px 2px rgb(205, 197, 197);
+
+        }
+
+        .keyboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            background-color: rgb(25, 24, 24);
+            box-shadow: 2px 2px 6px rgb(255, 250, 250),
+                -2px -2px 6px rgb(255, 252, 252);
+            color: antiquewhite;
+            padding: 12px;
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin: 1px;
+
+        }
+
+        .delete {
+            width: 85px;
+            height: 50px;
+
+        }
+
+
+        .space {
+            width: 700px;
+            margin: 3px;
+        }
+
+        .textarea {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+        }
+
+        textarea {
+            font-size: 30px;
+            color: coral;
+            background-color: rgb(249, 244, 207);
+            width: 100%;
+            height: 200px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .upper {
+            text-transform: uppercase;
+
+        }
+
+        .caps {
+            width: 160px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <div class="box">
+            <div class="container">
+                <h1><em>Negin kashani</em></h1>
+                <div class="textarea">
+                    <textarea name="" id="input"></textarea>
+                </div>
+                <div class="keyboard">
+                    <div class="row">
+                        <button class="btn">@</button>
+                        <button class="btn">!</button>
+                        <button class="btn">1</button>
+                        <button class="btn">2</button>
+                        <button class="btn">3</button>
+                        <button class="btn">4</button>
+                        <button class="btn">5</button>
+                        <button class="btn">6</button>
+                        <button class="btn">7</button>
+                        <button class="btn">8</button>
+                        <button class="btn">9</button>
+                        <button class="btn">0</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                    <div class="row">
+                        <button class="btn">{</button>
+                        <button class="btn">}</button>
+                        <button class="btn">?</button>
+                        <button class="btn">q</button>
+                        <button class="btn">w</button>
+                        <button class="btn">e</button>
+                        <button class="btn">r</button>
+                        <button class="btn">t</button>
+                        <button class="btn">y</button>
+                        <button class="btn">u</button>
+                        <button class="btn">i</button>
+                        <button class="btn">o</button>
+                        <button class="btn">p</button>
+
+
+                    </div>
+                    <div class="row">
+                        <button class="btn">:</button>
+                        <button class="btn">,</button>
+                        <button class="btn">|</button>
+                        <button class="btn">.</button>
+                        <button class="btn">a</button>
+                        <button class="btn">s</button>
+                        <button class="btn">d</button>
+                        <button class="btn">f</button>
+                        <button class="btn">g</button>
+                        <button class="btn">h</button>
+                        <button class="btn">j</button>
+                        <button class="btn">k</button>
+                        <button class="btn">l</button>
+
+                    </div>
+                    <div class="row">
+                        <button class="btn">)</button>
+                        <button class="btn">(</button>
+                        <button class="btn">z</button>
+                        <button class="btn">x</button>
+                        <button class="btn">c</button>
+                        <button class="btn">v</button>
+                        <button class="btn">b</button>
+                        <button class="btn">n</button>
+                        <button class="btn">m</button>
+                        <button class="btn">k</button>
+                        <button class="caps">Caps Lock</button>
+
+                    </div>
+                    <div class="row">
+                        <button class="space">Space</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+
+    let _buttons = document.querySelectorAll('.btn');
+    let _inp = document.querySelector("textarea");
+    let _capsbutton = document.querySelector(".caps");
+    let _spacebutton = document.querySelector(".space")
+    let _deletebutton = document.querySelector(".delete")
+
+    let chars = []
+
+    _buttons.forEach(item => {
+        item.addEventListener('click', () => {
+            _inp.value += item.innerHTML
+            chars = _inp.value.split('')
+            // console.log(chars);
+        })
+    })
+    _deletebutton.addEventListener('click', () => {
+        chars.pop()
+        _inp.value = chars.join('')
+
+    })
+    _spacebutton.addEventListener('click', () => {
+        chars.push(' ')
+        _inp.value = chars.join('')
+
+    })
+    _capsbutton.addEventListener('click', () => {
+        _buttons.forEach(item => {
+            item.classList.toggle('upper')
+        })
+
+        _inp.value = _inp.value.toUpperCase();
+    })
+
+
+
+
+
+
+</script>
+
+</html>
